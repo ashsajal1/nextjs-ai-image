@@ -75,8 +75,8 @@ export default function Home() {
       )}
 
       <input value={prompt} disabled={isLoading} className="p-2 rounded border outline-none" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter prompt for image' type="text" />
-      <div className="md:flex md:gap-4 p-2">
-        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 gap-2 flex items-center border rounded'>
+      <div className="flex flex-col md:flex-row gap-2 p-2">
+        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 gap-2 flex items-center border rounded bg-gradient-to-br from-green-600 to-blue-600 text-slate-50 disabled:opacity-50'>
           <>
           {isLoading && (
             <Loader />
@@ -84,7 +84,7 @@ export default function Home() {
           </>
           <span>Generate image</span>
         </button>
-        <button disabled={isLoading} onClick={handleRandomImg} className='p-2 border rounded'>Random image</button>
+        <button disabled={isLoading} onClick={handleRandomImg} className='p-2 border rounded disabled:opacity-50'>Random image</button>
       </div>
 
       {error && (

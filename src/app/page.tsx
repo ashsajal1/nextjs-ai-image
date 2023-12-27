@@ -1,6 +1,7 @@
 "use client"
 import Error from "@/components/Error"
 import ImageLoader from "@/components/ImageLoader"
+import Loader from "@/components/Loader"
 import { detectPrompt } from "@/libs/detectPrompt"
 import { generateImage } from "@/libs/generateImage"
 import { getRandomPrompt } from "@/libs/randomPrompt"
@@ -75,10 +76,16 @@ export default function Home() {
 
       <input value={prompt} disabled={isLoading} className="p-2 rounded border outline-none" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter prompt for image' type="text" />
       <div className="md:flex md:gap-4 p-2">
-        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 border rounded'>Generate image</button>
+        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 gap-2 flex items-center border rounded'>
+          <>
+          {isLoading && (
+            <Loader />
+          )}
+          </>
+          <span>Generate image</span>
+        </button>
         <button disabled={isLoading} onClick={handleRandomImg} className='p-2 border rounded'>Random image</button>
       </div>
-      <p>{prompt}</p>
 
       {error && (
         <Error error={error} />

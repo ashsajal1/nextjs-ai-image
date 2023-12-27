@@ -5,6 +5,7 @@ import Loader from "@/components/Loader"
 import { detectPrompt } from "@/libs/detectPrompt"
 import { generateImage } from "@/libs/generateImage"
 import { getRandomPrompt } from "@/libs/randomPrompt"
+import { LinkBreak1Icon, LinkBreak2Icon, MagicWandIcon } from "@radix-ui/react-icons"
 import { useEffect, useState } from "react"
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
   const [hasPrompt, setHasPrompt] = useState(false)
 
   useEffect(() => {
-    if(hasPrompt) {
+    if (hasPrompt) {
       setHasPrompt(false)
       doGenerateImg()
     }
@@ -33,7 +34,7 @@ export default function Home() {
       const promptStatus = await detectPrompt(prompt);
       // console.log(promptStatus.result)
 
-      if(error) {
+      if (error) {
         setError('')
       }
 
@@ -64,11 +65,11 @@ export default function Home() {
 
       {image ? (
         <>
-        {isLoading ? (
-          <ImageLoader isLoading={isLoading} />
-        ) : (
-          <img height={300} width={300} src={image} alt={prompt} />
-        )}
+          {isLoading ? (
+            <ImageLoader isLoading={isLoading} />
+          ) : (
+            <img height={300} width={300} src={image} alt={prompt} />
+          )}
         </>
       ) : (
         <ImageLoader isLoading={isLoading} />
@@ -76,15 +77,22 @@ export default function Home() {
 
       <input value={prompt} disabled={isLoading} className="p-2 rounded border outline-none" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter prompt for image' type="text" />
       <div className="flex flex-col md:flex-row gap-2 p-2">
-        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 gap-2 flex items-center border rounded bg-gradient-to-br from-green-600 to-blue-600 text-slate-50 disabled:opacity-50'>
+        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 flex gap-2 items-center border rounded bg-gradient-to-br from-green-600 to-blue-600 text-slate-50 disabled:opacity-50'>
           <>
-          {isLoading && (
-            <Loader />
-          )}
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <LinkBreak2Icon />
+            )}
           </>
+
           <span>Generate image</span>
         </button>
-        <button disabled={isLoading} onClick={handleRandomImg} className='p-2 border rounded disabled:opacity-50'>Random image</button>
+
+        <button disabled={isLoading} onClick={handleRandomImg} className='p-2 flex gap-2 items-center border rounded disabled:opacity-50'>
+          <MagicWandIcon />
+          <span>Random image</span>
+        </button>
       </div>
 
       {error && (

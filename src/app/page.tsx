@@ -72,7 +72,7 @@ export default function Home() {
           )}
         </>
       ) : (
-        <ImageLoader isLoading={isLoading} />
+        <img className="h-[300px] w-[300px]" src="/placeholder.jpg" alt="placeholder image" />
       )}
 
       {error && (

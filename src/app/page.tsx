@@ -75,29 +75,38 @@ export default function Home() {
         <ImageLoader isLoading={isLoading} />
       )}
 
-      <input value={prompt} disabled={isLoading} className="p-2 rounded border outline-none" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter prompt for image' type="text" />
-      <div className="flex flex-col md:flex-row gap-2 p-2">
-        <button disabled={isLoading} onClick={doGenerateImg} className='p-2 flex gap-2 items-center border rounded bg-gradient-to-br from-green-600 to-blue-600 text-slate-50 disabled:opacity-50'>
-          <>
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <LinkBreak2Icon />
-            )}
-          </>
-
-          <span>Generate image</span>
-        </button>
-
-        <button disabled={isLoading} onClick={handleRandomImg} className='p-2 flex gap-2 items-center border rounded disabled:opacity-50'>
-          <MagicWandIcon />
-          <span>Random image</span>
-        </button>
-      </div>
-
       {error && (
         <Error error={error} />
       )}
+
+      <div className="w-full md:w-[500px]">
+        <input value={prompt} disabled={isLoading} className="p-2 rounded border outline-none w-full text-gray-600" onChange={(e) => setPrompt(e.target.value)} placeholder='Enter prompt for image' type="text" />
+
+        <div className="flex flex-col md:flex-row gap-2 mt-2 w-full">
+          <button disabled={isLoading} onClick={doGenerateImg} className='p-2 flex gap-2 items-center border rounded bg-gradient-to-br from-green-600 to-blue-600 text-slate-50 disabled:opacity-50 w-full justify-center h-[45px]'>
+            <>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <LinkBreak2Icon />
+              )}
+            </>
+
+            <span>Generate image</span>
+          </button>
+
+          <button disabled={isLoading} onClick={handleRandomImg} className='p-[1px] flex gap-2 items-center border rounded disabled:opacity-50 h-[45px] bg-gradient-to-br from-green-600 to-blue-600 w-full'>
+            <div className="bg-slate-50 w-full h-full flex items-center rounded justify-center">
+              <div className="flex items-center justify-center p-1 gap-2 bg-gradient-to-br from-green-600 to-blue-600 text-transparent bg-clip-text">
+                <MagicWandIcon className="text-green-600" />
+                <span>Random image</span>
+              </div>
+            </div>
+          </button>
+        </div>
+
+
+      </div>
 
     </main>
   )

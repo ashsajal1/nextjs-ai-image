@@ -29,6 +29,10 @@ export default function Home() {
   }
 
   const doGenerateImg = async () => {
+    if(!prompt) {
+      setError("Prompt cannot be empty!")
+      return;
+    }
     try {
       setIsLoading(true)
       const promptStatus = await detectPrompt(prompt);

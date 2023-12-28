@@ -68,11 +68,11 @@ export default function Home() {
           {isLoading ? (
             <ImageLoader isLoading={isLoading} />
           ) : (
-            <img height={300} width={300} src={image} alt={prompt} />
+            <img className="md:h-[300px] md:w-[300px]" src={image} alt={prompt} />
           )}
         </>
       ) : (
-        <img className="h-[300px] w-[300px]" src="/placeholder.jpg" alt="placeholder image" />
+        <img className="md:h-[300px] md:w-[300px]" src="/placeholder.jpg" alt="placeholder image" />
       )}
 
       {error && (
